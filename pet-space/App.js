@@ -17,7 +17,7 @@ export default function App({ navigation }) {
             <TouchableOpacity activeOpacity={0.5}
             onPress={() => Alert.alert('Left button pressed')}>
               <Image
-                source={require('pet-space/assets/icon-ios.png')}
+                source={require('./assets/icon-ios.png')}
                 style={{width:50, height: 50}}
               />
             </TouchableOpacity>
