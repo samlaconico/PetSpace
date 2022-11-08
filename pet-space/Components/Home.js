@@ -8,7 +8,6 @@ export function HomeScreen({ navigation }) {
     <ImageBackground source={require('../assets/background.jpg')} resizeMode="cover" imageStyle={styles.bgImage} style={styles.main}>
       <View style={styles.main}>
         <StatusBar style="light" />
-          
           <SafeAreaView style={{ flex: 3, marginTop: 10, marginTop: 95}}>
             <SectionList
               contentContainerStyle={{ paddingHorizontal: 10 }}
@@ -20,21 +19,20 @@ export function HomeScreen({ navigation }) {
                   <FlatList
                     horizontal
                     data={section.data}
-                    renderItem={({ item }) => <ListItem item={item}/>}
+                    renderItem={({ item }) => <HeaderItem item={item}/>}
                     showsHorizontalScrollIndicator={false}
                   />
                 </>
               )}
               renderItem={({ item, section }) => {
                 return null;
-                return <ListItem item={item} />;
+                return <HeaderItem item={item} />;
               }}
             />
           </SafeAreaView>
 
           <View style={{flex : 2.5}}>
             <Text style={{fontSize: 30, fontWeightight: "bold", paddingBottom: 12, alignSelf: "center"}}>Breed Info</Text>
-              
               <View style={{flexDirection: "row", justifyContent: 'space-between'}}>
               <Pressable onPress={() => Alert.alert('Left button pressed')}style={{width: 100, height: 46, backgroundColor: "#FFFFFF", alignItems: "center", borderRadius: 6, marginHorizontal: 20, borderWidth: 3}}>
                 <Text style={{fontSize:30,}}>Dogs</Text>
@@ -44,7 +42,6 @@ export function HomeScreen({ navigation }) {
               </Pressable>
               </View>
           </View>
-
 
           <View style={{flex: 7, flexDirection:"row"}}>
           <SafeAreaView style={{ flex: 7,}}>
@@ -71,7 +68,8 @@ export function HomeScreen({ navigation }) {
   );
 }
 
-const ListItem = ({ item }) => {
+//header component (for scrolling list of dogs)
+const HeaderItem = ({ item }) => {
   return (
     <View style={styles.item}>
       <Image
@@ -86,6 +84,7 @@ const ListItem = ({ item }) => {
   );
 };
 
+//article component 
 const ArticleItem = ({article}) => {
   return <View style={styles.article}>
     <Pressable onPress={() => Alert.alert('Left button pressed')}>
@@ -95,6 +94,7 @@ const ArticleItem = ({article}) => {
   </View>
 }
 
+//articles on left row
 const ARTICLESLEFT = [
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
@@ -108,6 +108,7 @@ const ARTICLESLEFT = [
   }
 ]
 
+//articles on right row
 const ARTICLESRIGHT= [
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
@@ -121,6 +122,7 @@ const ARTICLESRIGHT= [
   }
 ]
 
+//header list
 const SECTIONS = [
   {
     title: 'Made for you',
