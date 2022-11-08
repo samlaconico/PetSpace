@@ -6,9 +6,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 export function SearchScreen() {
     return (
-      <ImageBackground source={require('pet-space/assets/background.jpg')} imageStyle={styles.bgImage} resizeMode="cover" style={styles.main}>
+      <ImageBackground source={require('../assets/background.jpg')} imageStyle={styles.bgImage} resizeMode="cover" style={styles.main}>
         <View style={styles.main}>
-          <Text>Search!</Text>
+          
         </View>
       </ImageBackground>
     );

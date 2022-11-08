@@ -5,10 +5,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 export function HomeScreen({ navigation }) {
   return (
-    <ImageBackground source={require('pet-space/assets/background.jpg')} resizeMode="cover" imageStyle={styles.bgImage} style={styles.main}>
+    <ImageBackground source={require('../assets/background.jpg')} resizeMode="cover" imageStyle={styles.bgImage} style={styles.main}>
       <View style={styles.main}>
         <StatusBar style="light" />
-          <SafeAreaView style={{ flex: 1, marginTop: 10, marginTop: 95}}>
+          
+          <SafeAreaView style={{ flex: 3, marginTop: 10, marginTop: 95}}>
             <SectionList
               contentContainerStyle={{ paddingHorizontal: 10 }}
               stickySectionHeadersEnabled={false}
@@ -18,7 +19,6 @@ export function HomeScreen({ navigation }) {
                 <>
                   <FlatList
                     horizontal
-                    
                     data={section.data}
                     renderItem={({ item }) => <ListItem item={item}/>}
                     showsHorizontalScrollIndicator={false}
@@ -30,10 +30,9 @@ export function HomeScreen({ navigation }) {
                 return <ListItem item={item} />;
               }}
             />
-
-            
           </SafeAreaView>
-          <View style={{flex : 3.3}}>
+
+          <View style={{flex : 2.5}}>
             <Text style={{fontSize: 30, fontWeightight: "bold", paddingBottom: 12, alignSelf: "center"}}>Breed Info</Text>
               
               <View style={{flexDirection: "row", justifyContent: 'space-between'}}>
@@ -44,8 +43,29 @@ export function HomeScreen({ navigation }) {
                 <Text style={{fontSize:30}}>Cats</Text>
               </Pressable>
               </View>
-
           </View>
+
+
+          <View style={{flex: 7, flexDirection:"row"}}>
+          <SafeAreaView style={{ flex: 7,}}>
+            <FlatList
+              data={ARTICLESLEFT}
+              renderItem={({ item }) => <ArticleItem article={item}/>}
+              keyExtractor={item => item.id}
+              scrollEnabled="false"
+            />
+          </SafeAreaView>
+
+          <SafeAreaView style={{ flex: 7,}}>
+            <FlatList
+              data={ARTICLESRIGHT}
+              renderItem={({ item }) => <ArticleItem article={item}/>}
+              keyExtractor={item => item.id}
+              scrollEnabled="false"
+            />
+          </SafeAreaView>
+          </View>
+
         </View>
     </ImageBackground>
   );
@@ -68,10 +88,38 @@ const ListItem = ({ item }) => {
 
 const ArticleItem = ({article}) => {
   return <View style={styles.article}>
-    <Image source={{}} style={styles.articlePhoto} resizeMode="cover"/>
-    <Text style={styles.articlePhoto}>{article.text}</Text>
+    <Pressable onPress={() => Alert.alert('Left button pressed')}>
+      <Image source={{uri: article.uri}} style={styles.articlePhoto} resizeMode="cover"/>
+      <Text style={styles.articleText}>{article.title}</Text>
+    </Pressable>
   </View>
 }
+
+const ARTICLESLEFT = [
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: "Dog Proofing Home in 30 Seconds",
+    uri: 'https://previews.123rf.com/images/damedeeso/damedeeso1209/damedeeso120900010/15377316-dog-welcome-home-on-brown-mat.jpg',
+  },
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: "Changing your Pups Food in 30 Seconds",
+    uri: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/feeding-dog-1638177317.jpg',
+  }
+]
+
+const ARTICLESRIGHT= [
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: "Changing Name in 30 Seconds",
+    uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDkjbUUqexvrrJJxm2qEzXYFxPD41al86kAS-PZUZQ3LJMcn9VWzTYJ2MVpxCgPvMQtQ8&usqp=CAU',
+  },
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: "Raising a Good Dog in 60 Seconds",
+    uri: 'https://www.bil-jac.com/media/2sxlmg0n/typeofeater-image.jpg?anchor=center&mode=crop&width=1024&height=512',
+  }
+]
 
 const SECTIONS = [
   {
@@ -144,4 +192,22 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontWeight: 'bold',
   },
+  articlePhoto: {
+    width: 150,
+    height: 100,
+    borderRadius: 11,
+    padding: 5,
+    alignContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
+  }, 
+  articleText: {
+    padding: 5,
+    textAlign: "center",
+    fontWeight: '800',
+    fontSize: 18,
+  },
+  article: {
+    padding: 2,
+  }
 });
