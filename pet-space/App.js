@@ -1,13 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
-import { ImageBackground, StyleSheet, Text, Image, View, Button, TouchableOpacity, Alert, Component} from 'react-native';
+
+import { ImageBackground, StyleSheet, Text, Image, View, Button, TouchableOpacity, Alert, Dimensions } from 'react-native';
+
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ProfileScreen } from './Components/Profile.js';
 import { HomeScreen } from './Components/Home.js';
 import { SearchScreen } from './Components/Search.js';
+
+import { MapView, Permissions } from 'react-native-maps';
+
+
+
+
 import { DogBreedsScreen } from './Components/DogBreedInfo.js';
 import {createStackNavigator} from '@react-navigation/stack';
 import { CatBreedsScreen } from './Components/CatBreedInfo.js';
+
 
 
 
@@ -40,10 +50,12 @@ export default function App({ navigation }) {
           headerLeftContainerStyle: {paddingRight: 10}})}
           />
 
-          <Tab.Screen name="Search" component={SearchScreen} options={{title:'Rescue Me', 
+          <Tab.Screen name="Search" component={SearchScreen} options={{title:'Search', 
           headerRightContainerStyle: {paddingRight: 10},
           headerLeftContainerStyle: {paddingRight: 10}}}
           />
+           
+   
 
           <Tab.Screen name="Profile" component={ProfileScreen} options={{title:'Profile', 
           headerRightContainerStyle: {paddingRight: 10},
