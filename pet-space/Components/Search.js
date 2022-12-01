@@ -30,19 +30,16 @@ export function SearchScreen() {
           console.log('location', location)
 
     })();
-  }, []); 
+  }, []);
+  
+
 
   return (
     <View style={styles.container}>
       <MapView 
                style={styles.map} 
                region={mapRegion}
-               initialRegion={{
-                    latitude: 34.3986856968682,
-                    longitude: -118.90502005837266,
-                    longitudeDelta: 0.0922,
-                    latitudeDelta: 0.0421
-               }}
+          
                showsUserLocation={true}
                showsMyLocationButton={true}
       >
