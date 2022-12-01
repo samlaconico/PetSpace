@@ -1,9 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { ImageBackground, StyleSheet, Text, Image, View, FlatList, SafeAreaView, SectionList, Button, Pressable, Alert } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+
 export function HomeScreen({ navigation }) {
+
   return (
     <ImageBackground source={require('../assets/background.jpg')} resizeMode="cover" imageStyle={styles.bgImage} style={styles.main}>
       <View style={styles.main}>
@@ -34,10 +36,10 @@ export function HomeScreen({ navigation }) {
           <View style={{flex : 2.5}}>
             <Text style={{fontSize: 30, fontWeightight: "bold", paddingBottom: 12, alignSelf: "center"}}>Breed Info</Text>
               <View style={{flexDirection: "row", justifyContent: 'space-between'}}>
-              <Pressable onPress={() => Alert.alert('Left button pressed')}style={{width: 100, height: 46, backgroundColor: "#FFFFFF", alignItems: "center", borderRadius: 6, marginHorizontal: 20, borderWidth: 3}}>
+              <Pressable onPress={() => navigation.navigate('DogBreedsScreen')}style={{width: 100, height: 46, backgroundColor: "#FFFFFF", alignItems: "center", borderRadius: 6, marginHorizontal: 20, borderWidth: 3}}>
                 <Text style={{fontSize:30,}}>Dogs</Text>
               </Pressable>
-              <Pressable style={{width: 100, height: 46, backgroundColor: "#FFFFFF", alignItems: "center", borderRadius: 6, marginHorizontal: 20, borderWidth: 3}}>
+              <Pressable onPress={() => navigation.navigate('CatBreedsScreen')} style={{width: 100, height: 46, backgroundColor: "#FFFFFF", alignItems: "center", borderRadius: 6, marginHorizontal: 20, borderWidth: 3}}>
                 <Text style={{fontSize:30}}>Cats</Text>
               </Pressable>
               </View>
