@@ -32,7 +32,6 @@ export function SearchScreen() {
     })();
   }, []); 
 
- 
   return (
     <View style={styles.container}>
       <MapView 
