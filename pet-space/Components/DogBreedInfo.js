@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native';
 
 
 
-export function DogBreedsScreen() {
+export function DogBreedsScreen({navigation}) {
     return (
 
         <ImageBackground source={require('../assets/background.jpg')} imageStyle={styles.bgImage} resizeMode="cover" style={styles.main}>
@@ -13,7 +13,7 @@ export function DogBreedsScreen() {
                     <SectionList
                     sections={BreedList}
                     keyExtractor = {(item, index) => item + index}
-                    renderItem = { ( {item}) => <ListDogs item = {item} />}
+                    renderItem = { ( {item}) => <ListDogs item = {item} navigation = {navigation}/>}
                     renderSectionHeader = {({section : {text}}) => (
                         <Text style = {styles.itemText} > {text} </Text>
                     )}
@@ -25,11 +25,16 @@ export function DogBreedsScreen() {
     );
   }
 
+  const navigateTo = (navigation, key) => {
+    navigation.navigate("Manual", {key,});
+  }
+
+
   //Component for scrolling list of dog breeds
-  const  ListDogs = ({ item }) => {
+  const  ListDogs = ({ item, navigation}) => {
     return (
       <View style={styles.item}>
-        
+        <Pressable onPress={() => navigateTo(navigation, item.key)}>
         <Image
           source={{
             uri: item.uri,
@@ -38,6 +43,7 @@ export function DogBreedsScreen() {
           resizeMode="cover"
         />
         <Text style={styles.itemText}>{item.text}</Text>
+        </Pressable>
       </View>
     );
   };

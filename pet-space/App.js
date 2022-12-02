@@ -18,16 +18,17 @@ import { DogBreedsScreen } from './Components/DogBreedInfo.js';
 import {createStackNavigator} from '@react-navigation/stack';
 import { CatBreedsScreen } from './Components/CatBreedInfo.js';
 
-
+import { Manual } from './Components/Manual.js';
 
 
 const Stack = createStackNavigator();
-function MyStack() {
+function MyStack({navigation}) {
   return (
     <Stack.Navigator screenOptions = {{ headerShown : false }} initialRouteName = "HomeScreen">
           <Stack.Screen name = "HomeScreen" component = {HomeScreen} />
-          <Stack.Screen name = "DogBreedsScreen" component = {DogBreedsScreen} />
+          <Stack.Screen name = "DogBreedsScreen" component = {DogBreedsScreen} options={({navigation})}/>
           <Stack.Screen name = "CatBreedsScreen" component = {CatBreedsScreen} />
+          <Stack.Screen name = "Manual" component = {Manual}/>
         </Stack.Navigator>
   );
 }

@@ -5,11 +5,8 @@ import MapView, { Callout, Circle, Marker, PROVIDER_GOOGLE } from 'react-native-
 import * as Location from 'expo-location';
 import { render } from 'react-dom';
 
-
-
 export function SearchScreen() {
   const [mapRegion, setMapRegion] = useState(null);
-  
   
   useEffect(() => {
     (async () => {
@@ -32,8 +29,6 @@ export function SearchScreen() {
     })();
   }, []);
   
-
-
   return (
     <View style={styles.container}>
       <MapView 

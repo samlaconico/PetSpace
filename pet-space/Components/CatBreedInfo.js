@@ -3,11 +3,8 @@ import { ImageBackground, SectionList, StyleSheet, Text, Image, View, Button, Fl
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native';
 
-
-
-export function CatBreedsScreen() {
+export function CatBreedsScreen({navigation}) {
     return (
-
         <ImageBackground source={require('../assets/background.jpg')} imageStyle={styles.bgImage} resizeMode="cover" style={styles.main}>
             <View style={styles.main}>
             <Text style={{fontSize: 20, fontWeightight: "bold", marginTop :100, paddingBottom: 12, alignSelf: "center"}}>Breed Information</Text>
@@ -21,7 +18,6 @@ export function CatBreedsScreen() {
                     )}
                     />
                 </SafeAreaView>
-
             </View>
         </ImageBackground>
     );
