@@ -3,9 +3,7 @@ import { ImageBackground, StyleSheet, Text, Image, View, FlatList, SafeAreaView,
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-
 export function HomeScreen({ navigation }) {
-
   return (
     <ImageBackground source={require('../assets/background.jpg')} resizeMode="cover" imageStyle={styles.bgImage} style={styles.main}>
       <View style={styles.main}>

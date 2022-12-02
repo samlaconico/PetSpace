@@ -1,23 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-
 import { ImageBackground, StyleSheet, Text, Image, View, Button, TouchableOpacity, Alert, Dimensions } from 'react-native';
-
-
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ProfileScreen } from './Components/Profile.js';
 import { HomeScreen } from './Components/Home.js';
 import { SearchScreen } from './Components/Search.js';
-
 import { MapView, Permissions } from 'react-native-maps';
-
-
-
-
 import { DogBreedsScreen } from './Components/DogBreedInfo.js';
 import {createStackNavigator} from '@react-navigation/stack';
 import { CatBreedsScreen } from './Components/CatBreedInfo.js';
-
 import { Manual } from './Components/Manual.js';
 
 
