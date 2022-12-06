@@ -1,6 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
-import { ImageBackground, SectionList, StyleSheet, Text, Image, View, Button, FlatList, Pressable, Alert } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { ImageBackground, SectionList, StyleSheet, Text, Image, View, Pressable, } from 'react-native';
 import { SafeAreaView } from 'react-native';
 
 export function CatBreedsScreen({navigation}) {
@@ -12,7 +10,7 @@ export function CatBreedsScreen({navigation}) {
                     <SectionList
                     sections={BreedList}
                     keyExtractor = {(item, index) => item + index}
-                    renderItem = { ( {item}) => <ListDogs item = {item} />}
+                    renderItem = { ( {item}) => <ListCats item = {item} navigation = {navigation}/>}
                     renderSectionHeader = {({section : {text}}) => (
                         <Text style = {styles.itemText} > {text} </Text>
                     )}
@@ -23,11 +21,17 @@ export function CatBreedsScreen({navigation}) {
     );
   }
 
-  //Component for scrolling list of dog breeds
-  const  ListDogs = ({ item }) => {
+
+  const navigateTo = (navigation, key) => {
+    navigation.navigate("Manual", {key,});
+  }
+
+  //Component for scrolling list of cat breeds
+
+  const  ListCats = ({ item, navigation}) => {
     return (
       <View style={styles.item}>
-        
+        <Pressable onPress={() => navigateTo(navigation, item.key)}>
         <Image
           source={{
             uri: item.uri,
@@ -36,28 +40,29 @@ export function CatBreedsScreen({navigation}) {
           resizeMode="cover"
         />
         <Text style={styles.itemText}>{item.text}</Text>
+        </Pressable>
       </View>
     );
   };
 
-  //Dog List
+  //Cat List
 
   const BreedList = [
     {
         data : [
-            { text : "German Shepherd", uri: "https://www.perfectdogbreeds.com/wp-content/uploads/2020/04/German-Shepherd.jpg",  key: '1'},
-            { text : "Pitbull", uri: "https://images.pexels.com/photos/5379723/pexels-photo-5379723.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", key: '2'},
-            { text : "Belgian Mallinois", uri: "https://www.sheknows.com/wp-content/uploads/2018/12/j5051usult5ji4nolud5.jpeg?w=1920", key: '3'},
-            { text : "Husky", uri: "https://woofitszelda.com/wp-content/uploads/2021/09/husky-mix-2.jpg", key: '4'},
-            { text : "Golden Retriever", uri: "https://i.shgcdn.com/148dc4ae-078b-4962-a7ba-70b75be8df4e/-/format/auto/-/preview/3000x3000/-/quality/lighter/ ", key: '5'},
-            { text : "Chihuahua", uri: "https://images.prismic.io/trustedhousesitters/43da5e47-8d31-44c1-bcda-0c6226dfbeed_chihuahua-1.jpeg?auto=compress,format&rect=0,0,1200,800&w=480&h=320", key: '6'},
-            { text : "Great Dane", uri: "https://www.petful.com/wp-content/uploads/2012/01/great-dane-2-750x644.jpg", key: '7'},
-            { text : "Bernese Mountain Dog", uri: "https://i.pinimg.com/originals/33/d9/be/33d9be3f57fafa6a7abc4c41022e1f57.jpg", key: '8'},
-            { text : "Golden Doodle", uri: "https://www.rover.com/blog/wp-content/uploads/2021/06/groverdood-1024x768.jpg ", key: '9'},
-            { text : "Labrador Retriever", uri: "https://images.wideopenpets.com/wp-content/uploads/2019/10/Labrador-Retrievers-1056x704.png ", key: '10'},
-            { text : "French Bulldog", uri: "https://www.frenchbulldogbreed.net/wp-content/uploads/2018/06/French-bulldog-puppy-for-sale-Toby-02-1.jpg ", key: '11'},
-            { text : "Austrailian Shepherd", uri: "https://assets.orvis.com/is/image/orvisprd/australian-shepherd?wid=1023&src=is($object$:7-3)", key: '12'},
-            { text : "Rottweiler", uri: "https://woofspedia.com/wp-content/uploads/2021/10/shutterstock_1707420238-750x500.jpg ", key: '13'},
+          { text : "Ragdoll", uri: "https://www.purina.co.uk/sites/default/files/styles/square_medium_440x440/public/2022-06/Ragdoll.jpg?itok=uoJljrty",  key: '14'},
+          { text : "Maine Coon", uri: "https://www.purina.co.uk/sites/default/files/styles/square_medium_440x440/public/2022-06/Maine-Coon-Cat.jpg?itok=XrHCK4xn", key: '15'},
+          { text : "Persian", uri: "https://www.purina.co.uk/sites/default/files/styles/square_medium_440x440/public/2022-06/Persian-Long-Hair.jpg?itok=OEork2Dh", key: '16'},
+          { text : "British Shorthair", uri: "https://excitedcats.com/wp-content/uploads/2020/12/British-Shorthair-cat_Shutterstock_PHOTOCREO-Michal-Bednarek.jpg", key: '17'},
+          { text : "Abyssinian", uri: "https://www.purina.co.uk/sites/default/files/2022-06/Abyssinian-Cat-Breed_0.jpg?itok=r3GCHbzx", key: '18'},
+          { text : "American Shorthair", uri: "https://media.kidadl.com/Purrrfect_Facts_About_The_American_Shorthair_Cat_Kids_Will_Love_d62617998c.jpg", key: '19'},
+          { text : "Scottish Fold", uri: "https://allaboutcats.com/wp-content/uploads/2020/10/the-Scottish-Fold-cat.jpg", key: '20'},
+          { text : "Sphynx", uri: "https://img.cutenesscdn.com/375/cme-data/getty/2b6b4c0c3c7e41db858c525787b832bd.jpg", key: '21'},
+          { text : "Siamese", uri: "https://images.ctfassets.net/s7r1h98f1v8b/5aDOPOV4ic3iZDdYMyM9tk/919476d390a2a81644a8ceedeb3b1f9f/thai_siamese_cat_breed.jpg", key: '22'},
+          { text : "Bengal", uri: "https://allaboutcats.com/wp-content/uploads/2020/10/Bengal.jpg", key: '23'},
+          { text : "Siberian", uri: "https://cf.ltkcdn.net/cats/cat-breeds/images/orig/325227-1877x1251-siberian-cat.jpg", key: '24'},
+          { text : "Birman", uri: "https://dinoanimals.com/wp-content/uploads/2021/01/Birman-cat-1.jpg", key: '25'},
+          { text : "Russian Blue", uri: "https://www.petplace.com/static/5b0e77c42271ed6918a3fae4b808f356/98569/AdobeStock_112943750.jpg", key: '26'},
         ]
     }
   ]
