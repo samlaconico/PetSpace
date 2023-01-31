@@ -13,7 +13,7 @@ import { Manual } from './Components/Manual.js';
 
 
 const Stack = createStackNavigator();
-function MyStack({navigation}) {
+function HomeStack({navigation}) {
   return (
     <Stack.Navigator screenOptions = {{ headerShown : false }} initialRouteName = "HomeScreen">
           <Stack.Screen name = "HomeScreen" component = {HomeScreen} />
@@ -28,7 +28,7 @@ export default function App({ navigation }) {
       <NavigationContainer> 
         <Tab.Navigator screenOptions={{headerTitleAlign: 'center',
         headerStyle: {backgroundColor: 'white', }, headerTitleStyle: {fontSize: 30}, headerTransparent: true, }}>
-          <Tab.Screen name="Home" component={MyStack} options={({navigation}) => ({title:'Rescue Me',
+          <Tab.Screen name="Home" component={HomeStack} options={({navigation}) => ({title:'Rescue Me',
           headerRight: () => (
             <TouchableOpacity activeOpacity={0.5}
             onPress={() => Alert.alert('Left button pressed')}>
