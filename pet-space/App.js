@@ -10,6 +10,7 @@ import { DogBreedsScreen } from './Components/DogBreedInfo.js';
 import {createStackNavigator} from '@react-navigation/stack';
 import { CatBreedsScreen } from './Components/CatBreedInfo.js';
 import { Manual } from './Components/Manual.js';
+import { PetProfile } from './Components/PetProfile.js';
 
 
 const Stack = createStackNavigator();
@@ -20,6 +21,7 @@ function MyStack({navigation}) {
           <Stack.Screen name = "DogBreedsScreen" component = {DogBreedsScreen} options={({navigation})}/>
           <Stack.Screen name = "CatBreedsScreen" component = {CatBreedsScreen} />
           <Stack.Screen name = "Manual" component = {Manual}/>
+          <Stack.Screen name = "PetProfile" component = {PetProfile}/>
         </Stack.Navigator>
   );
 }

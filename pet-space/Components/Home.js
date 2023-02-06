@@ -19,7 +19,7 @@ export function HomeScreen({ navigation }) {
                   <FlatList
                     horizontal
                     data={section.data}
-                    renderItem={({ item }) => <HeaderItem item={item}/>}
+                    renderItem={({ item }) => <HeaderItem item={item} navigation={navigation}/>}
                     showsHorizontalScrollIndicator={false}
                   />
                 </>
@@ -68,10 +68,21 @@ export function HomeScreen({ navigation }) {
   );
 }
 
+function findElement(array, title) {
+  return array.find((element) => {
+    return element.key === title;
+  })
+}
+
+const navigateTo = (navigation, key, text, img) => {
+  navigation.navigate("PetProfile", {key, text, img});
+}
+
 //header component (for scrolling list of dogs)
-const HeaderItem = ({ item }) => {
+const HeaderItem = ({ item, navigation }) => {
   return (
     <View style={styles.item}>
+      <Pressable onPress={() => navigateTo(navigation, item.key, item.text, item.uri)}>
       <Image
         source={{
           uri: item.uri,
@@ -80,6 +91,7 @@ const HeaderItem = ({ item }) => {
         resizeMode="cover"
       />
       <Text style={styles.itemText}>{item.text}</Text>
+      </Pressable>
     </View>
   );
 };
@@ -131,27 +143,32 @@ const SECTIONS = [
       {
         key: '1',
         text: '1 mile away',
+        name: 'Rocket',
         uri: 'https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn',
       },
       {
         key: '2',
         text: '4 miles away',
+        name: 'Vincent',
         uri: 'https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg',
       },
 
       {
         key: '3',
         text: '6 miles away',
+        name: 'Molly',
         uri: 'https://post.healthline.com/wp-content/uploads/2020/08/3180-Pug_green_grass-732x549-thumbnail-732x549.jpg',
       },
       {
         key: '4',
         text: '1 mile away',
+        name: 'Cooper',
         uri: 'https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/advisor/wp-content/uploads/2021/03/pit-bull-featured.jpg',
       },
       {
         key: '5',
         text: '3 miles away',
+        name: 'Allie',
         uri: 'https://media-cldnry.s-nbcnews.com/image/upload/rockcms/2022-08/220805-border-collie-play-mn-1100-82d2f1.jpg',
       },
     ],
