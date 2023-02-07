@@ -74,15 +74,15 @@ function findElement(array, title) {
   })
 }
 
-const navigateTo = (navigation, key, text, img) => {
-  navigation.navigate("PetProfile", {key, text, img});
+const navigateTo = (navigation, key, name, img, text) => {
+  navigation.navigate("PetProfile", {key, name, img, text});
 }
 
 //header component (for scrolling list of dogs)
 const HeaderItem = ({ item, navigation }) => {
   return (
     <View style={styles.item}>
-      <Pressable onPress={() => navigateTo(navigation, item.key, item.text, item.uri)}>
+      <Pressable onPress={() => navigateTo(navigation, item.key, item.name, item.uri, item.text)}>
       <Image
         source={{
           uri: item.uri,

@@ -14,6 +14,7 @@ import { PetProfile } from './Components/PetProfile.js';
 
 
 const Stack = createStackNavigator();
+
 function MyStack({navigation}) {
   return (
     <Stack.Navigator screenOptions = {{ headerShown : false }} initialRouteName = "HomeScreen">
