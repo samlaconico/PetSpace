@@ -4,10 +4,13 @@ import MapView, { Callout, Circle, Marker, PROVIDER_GOOGLE } from 'react-native-
 import * as Location from 'expo-location';
 import { render } from 'react-dom';
 
+
 // SearchScreen component definition
 export function SearchScreen() {
   // State to store the current region of the map
   const [mapRegion, setMapRegion] = useState(null);
+  // State to store the pet shelters data
+  const [petShelters, setPetShelters] = useState([]);
   
   // Use Effect hook to get the user's current location and set it as the map region
   useEffect(() => {
@@ -29,8 +32,8 @@ export function SearchScreen() {
         setMapRegion({ 
           latitude: location.coords.latitude,
           longitude: location.coords.longitude,
-          longitudeDelta: 0.0922,
-          latitudeDelta: 0.0421
+          longitudeDelta: 1,
+          latitudeDelta: 1
         });
       } catch (error) {
         console.log(error);
@@ -40,23 +43,51 @@ export function SearchScreen() {
           setMapRegion({ 
             latitude: location.coords.latitude,
             longitude: location.coords.longitude,
-            longitudeDelta: 0.0922,
-            latitudeDelta: 0.0421
+            longitudeDelta: 1,
+            latitudeDelta: 1
           });
         })();
       }
     })();
   });
+
+
+
+
+
+  // Function to search for pet shelters
+  const searchPetShelters = async () => {
+    // URL to make the request to
+    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${mapRegion.latitude},${mapRegion.longitude}&radius=100000&types=animal_care&key=AIzaSyAbnDNnplvoEYpOLgPJhjoONIQPy5LknyM`;
+    
+    try {
+      // Make the request
+      const response = await fetch(url);
+      // Parse the response data
+      const data = await response.json();
+      // Update the pet shelters data state with the response data
+      setPetShelters(data.results);
+      console.log(petShelters);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   
+
+
+
+
+
   // Render the component
   return (
     <View style={styles.container}>
       {/* Search button component */}
-      <TouchableOpacity style={styles.searchButton}>
-        <Text style={styles.searchButtonText}>Pet Shelter Search</Text>
-      </TouchableOpacity>
+      <TouchableOpacity style={styles.searchButton} onPress={searchPetShelters}>
+  <Text style={styles.searchButtonText}>Pet Shelter Search</Text>
+</TouchableOpacity>
       {/* Map component */}
       <MapView 
+               provider = {PROVIDER_GOOGLE}
                style={styles.map} 
                region={mapRegion}
                // show user's current location on the map
@@ -64,6 +95,23 @@ export function SearchScreen() {
                // show the My Location button on the map
                showsMyLocationButton={true}
       >
+
+    {petShelters.map((petShelter, index) => (
+    <Marker 
+      key={index}
+      coordinate={{
+        latitude: petShelter.geometry.location.lat,
+        longitude: petShelter.geometry.location.lng
+      }}
+    >
+      <Callout>
+        <View>
+          <Text>{petShelter.name}</Text>
+          <Text>{petShelter.vicinity}</Text>
+        </View>
+      </Callout>
+    </Marker>
+  ))} 
   
      </MapView>  
     </View>
