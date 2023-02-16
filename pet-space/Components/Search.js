@@ -32,8 +32,8 @@ export function SearchScreen() {
         setMapRegion({ 
           latitude: location.coords.latitude,
           longitude: location.coords.longitude,
-          longitudeDelta: .1,
-          latitudeDelta: .1
+          longitudeDelta: 1,
+          latitudeDelta: 1
         });
       } catch (error) {
         console.log(error);
