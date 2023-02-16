@@ -43,8 +43,8 @@ export function SearchScreen() {
           setMapRegion({ 
             latitude: location.coords.latitude,
             longitude: location.coords.longitude,
-            longitudeDelta: 1,
-            latitudeDelta: 1
+            longitudeDelta: .1,
+            latitudeDelta: .1
           });
         })();
       }
@@ -58,7 +58,7 @@ export function SearchScreen() {
   // Function to search for pet shelters
   const searchPetShelters = async () => {
     // URL to make the request to
-    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${mapRegion.latitude},${mapRegion.longitude}&radius=100000&types=animal_care&key=AIzaSyAbnDNnplvoEYpOLgPJhjoONIQPy5LknyM`;
+    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${mapRegion?.latitude},${mapRegion?.longitude}&radius=100000&types=animal_care&key=AIzaSyAbnDNnplvoEYpOLgPJhjoONIQPy5LknyM`;
     
     try {
       // Make the request
@@ -67,7 +67,7 @@ export function SearchScreen() {
       const data = await response.json();
       // Update the pet shelters data state with the response data
       setPetShelters(data.results);
-      console.log(petShelters);
+     
     } catch (error) {
       console.error(error);
     }
