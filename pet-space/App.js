@@ -14,17 +14,19 @@ import { PetProfile } from './Components/PetProfile.js';
 import { AccountInformation } from './Components/AccountInformation.js';
 
 
-const Stack = createStackNavigator();
+const HomeStack = createStackNavigator();
 // Stack Navigator for Home screen
-function MyStack({navigation}) {
+function HomeStackNavigator({navigation}) {
   return (
-    <Stack.Navigator screenOptions = {{ headerShown : false }} initialRouteName = "HomeScreen">
-      <Stack.Screen name = "HomeScreen" component = {HomeScreen} />
-      <Stack.Screen name = "DogBreedsScreen" component = {DogBreedsScreen} options={({navigation})}/>
-      <Stack.Screen name = "CatBreedsScreen" component = {CatBreedsScreen} />
-      <Stack.Screen name = "Manual" component = {Manual}/>
-      <Stack.Screen name = "PetProfile" component = {PetProfile}/>
-    </Stack.Navigator>
+    <HomeStack.Navigator screenOptions = {{ headerShown : false }} initialRouteName = "HomeScreen">
+      <HomeStack.Screen name = "HomeScreen" component = {HomeScreen} />
+      <HomeStack.Screen name = "DogBreedsScreen" component = {DogBreedsScreen} options={({navigation})}/>
+      <HomeStack.Screen name = "CatBreedsScreen" component = {CatBreedsScreen} />
+      <HomeStack.Screen name = "Manual" component = {Manual}/>
+      <HomeStack.Screen name = "PetProfile" component = {PetProfile}/>
+    </HomeStack.Navigator>
+  )
+}
 
 // Stack Navigator for Profile screen
 const ProfileStack = createStackNavigator();
