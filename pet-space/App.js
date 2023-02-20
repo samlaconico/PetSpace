@@ -7,23 +7,24 @@ import { HomeScreen } from './Components/Home.js';
 import { SearchScreen } from './Components/Search.js';
 import { MapView, Permissions } from 'react-native-maps';
 import { DogBreedsScreen } from './Components/DogBreedInfo.js';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import { CatBreedsScreen } from './Components/CatBreedInfo.js';
 import { Manual } from './Components/Manual.js';
+import { PetProfile } from './Components/PetProfile.js';
 import { AccountInformation } from './Components/AccountInformation.js';
 
+
+const Stack = createStackNavigator();
 // Stack Navigator for Home screen
-const HomeStack = createStackNavigator();
-function HomeStackNavigator() {
+function MyStack({navigation}) {
   return (
-    <HomeStack.Navigator screenOptions = {{ headerShown : false }} >
-          <HomeStack.Screen name = "HomeScreen" component = {HomeScreen} />
-          <HomeStack.Screen name = "DogBreedsScreen" component = {DogBreedsScreen} />
-          <HomeStack.Screen name = "CatBreedsScreen" component = {CatBreedsScreen} />
-          <HomeStack.Screen name = "Manual" component = {Manual}/>
-        </HomeStack.Navigator>
-  );
-}
+    <Stack.Navigator screenOptions = {{ headerShown : false }} initialRouteName = "HomeScreen">
+      <Stack.Screen name = "HomeScreen" component = {HomeScreen} />
+      <Stack.Screen name = "DogBreedsScreen" component = {DogBreedsScreen} options={({navigation})}/>
+      <Stack.Screen name = "CatBreedsScreen" component = {CatBreedsScreen} />
+      <Stack.Screen name = "Manual" component = {Manual}/>
+      <Stack.Screen name = "PetProfile" component = {PetProfile}/>
+    </Stack.Navigator>
 
 // Stack Navigator for Profile screen
 const ProfileStack = createStackNavigator();
