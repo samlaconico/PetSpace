@@ -10,7 +10,9 @@ const ProfileScreen = ({ navigation }) => {
       <ImageBackground source={require('../assets/background.jpg')} 
        imageStyle={styles.bgImage} style={styles.backgroundImage}>
         <View style={styles.container}>
+          <Image source={require('../assets/transparent.png')} style={styles.emptyImageBox} />
           {/* TouchableOpacity component to navigate to AccountInformation screen when pressed */}
+          <Text style = {styles.text}>FirstName LastName</Text>
           <TouchableOpacity style={styles.menuItem} 
            onPress={() => navigation.navigate('AccountInformation')}>
             <Text style={styles.menuText}>Account Information</Text>
@@ -48,7 +50,7 @@ const ProfileScreen = ({ navigation }) => {
     },
     // Style for background image of ImageBackground component
     bgImage: {
-        opacity: .1,
+        opacity: .2,
     },
     // Style for View component
     container: {
@@ -56,16 +58,39 @@ const ProfileScreen = ({ navigation }) => {
       justifyContent: 'center',
       alignItems: 'center'
     },
+    // Style for Image component
+    emptyImageBox: {
+      width: 250,
+      height: 250,
+      borderWidth: 1,
+      borderColor: 'gray',
+      backgroundColor: 'transparent',
+      marginBottom: 20,
+      borderRadius: 100,
+    },
     // Style for TouchableOpacity component
     menuItem: {
+      backgroundColor: 'white',
+      borderWidth: 1,
+      borderColor: 'black',
+      fontSize: 18,
       padding: 10,
-      marginVertical: 10
+      marginVertical: 5,
+      borderRadius: 5,
     },
     // Style for text in TouchableOpacity component
     menuText: {
       fontSize: 18,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
+    text: {
+      fontSize: 25,
+      fontWeight: 'bold',
+      borderWidth: 1,
+      backgroundColor:'#BEBEBE',
+      borderRadius: 5,
+      marginBottom: 20,
+    }
   });
   
   // Exporting ProfileScreen component

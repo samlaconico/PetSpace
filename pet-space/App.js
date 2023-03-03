@@ -120,5 +120,5 @@ const HeaderStyle = StyleSheet.create({
 const Tab = createBottomTabNavigator();
 
 const styles = StyleSheet.create({
-  
+
 });
