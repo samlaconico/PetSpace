@@ -12,9 +12,10 @@ import { CatBreedsScreen } from './Components/CatBreedInfo.js';
 import { Manual } from './Components/Manual.js';
 import { PetProfile } from './Components/PetProfile.js';
 import { AccountInformation } from './Components/AccountInformation.js';
-
+import { LoginScreen } from './Components/Login.js';
 
 const HomeStack = createStackNavigator();
+const LoginStack = createStackNavigator();
 // Stack Navigator for Home screen
 function HomeStackNavigator({navigation}) {
   return (
@@ -45,7 +46,17 @@ export default function App({ navigation }) {
       // NavigationContainer component to wrap the navigators and manage the navigation stack
       <NavigationContainer> 
         {/* Bottom Tab Navigator to navigate between different screens */}
-        <Tab.Navigator 
+        <LoginStack.Navigator>
+          <LoginStack.Screen name="Login" component={LoginScreen} options={({navigation})}/>
+          <LoginStack.Screen name="PetSpace" component={MainTabs}/>
+        </LoginStack.Navigator>
+      </NavigationContainer>
+  );
+}
+
+function MainTabs() {
+  return (
+    <Tab.Navigator 
           // Customizing the appearance of the header for each screen in the Tab Navigator
           screenOptions={{
             headerTitleAlign: 'center', // Aligning the title in the center
@@ -99,10 +110,8 @@ export default function App({ navigation }) {
           />
 
         </Tab.Navigator>
-      </NavigationContainer>
-  );
+      )
 }
-
 
 const HeaderStyle = StyleSheet.create({
 

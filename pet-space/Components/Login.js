@@ -1,116 +1,128 @@
+import React,{useState,useEffect} from "react";
+import { KeyboardAvoidingView,StyleSheet,Text,TextInput,TouchableOpacity,View } from "react-native";
+import { authentication} from "../firebase";
+import {signInWithEmailAndPassword,createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigation } from "@react-navigation/native";
+export function LoginScreen({navigation}) {
+    const [email,setEmail]=useState('')
+    const [password,setPassword]=useState('')
 
-// components/login.js
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert, ActivityIndicator } from 'react-native';
-import firebase from '../firebase/config';
-require('firebase/auth');
-
-export default class Login extends Component {
-  
-  constructor() {
-    super();
-    this.state = { 
-      email: '', 
-      password: '',
-      isLoading: false
-    }
-  }
-  updateInputVal = (val, prop) => {
-    const state = this.state;
-    state[prop] = val;
-    this.setState(state);
-  }
-  userLogin = () => {
-    if(this.state.email === '' && this.state.password === '') {
-      Alert.alert('Enter details to signin!')
-    } else {
-      this.setState({
-        isLoading: true,
-      })
-      firebase
-      .auth()
-      .signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then((res) => {
-        console.log(res)
-        console.log('User logged-in successfully!')
-        this.setState({
-          isLoading: false,
-          email: '', 
-          password: ''
+    useEffect(()=>{
+        const unsubscribe = authentication.onAuthStateChanged(user=>{
+            if(user){
+                navigation.navigate("PetSpace")
+            }
         })
-        this.props.navigation.navigate('Dashboard')
-      })
-      .catch(error => this.setState({ errorMessage: error.message }))
+        return unsubscribe
+    },[])
+
+    const handleSignUp = () => {
+        createUserWithEmailAndPassword(authentication,email,password)
+        .then((re)=>{
+            console.log(re);
+        })
+        .catch(error=>alert(error.message))
     }
-  }
-  render() {
-    if(this.state.isLoading){
-      return(
-        <View style={styles.preloader}>
-          <ActivityIndicator size="large" color="#9E9E9E"/>
-        </View>
-      )
-    }    
+    const handleSignIn = () => {
+        signInWithEmailAndPassword(authentication,email,password)
+        .then((re)=>{
+            console.log(re);
+        })
+        .catch(error=>alert(error.message))
+    }
+
+
     return (
-      <View style={styles.container}>  
-        <TextInput
-          style={styles.inputStyle}
-          placeholder="Email"
-          value={this.state.email}
-          onChangeText={(val) => this.updateInputVal(val, 'email')}
-        />
-        <TextInput
-          style={styles.inputStyle}
-          placeholder="Password"
-          value={this.state.password}
-          onChangeText={(val) => this.updateInputVal(val, 'password')}
-          maxLength={15}
-          secureTextEntry={true}
-        />   
-        <Button
-          color="#3740FE"
-          title="Signin"
-          onPress={() => this.userLogin()}
-        />   
-        <Text 
-          style={styles.loginText}
-          onPress={() => this.props.navigation.navigate('Signup')}>
-          Don't have account? Click here to signup
-        </Text>                          
-      </View>
-    );
-  }
+        <KeyboardAvoidingView
+            style={styles.container}
+            behavior="padding"
+        >
+            <View style ={styles.inputContainer}>
+                <TextInput 
+                placeholder="Email"
+                value={email}
+                onChangeText={text=>setEmail(text)}
+                style={styles.input}
+                />
+                <TextInput 
+                placeholder="Password"
+                value={password}
+                onChangeText={text=>setPassword(text)}
+                style={styles.input}
+                secureTextEntry
+                />
+            </View>
+
+            <View style={styles.buttonContainer}>
+                <TouchableOpacity
+                    onPress={handleSignIn}
+                    style={styles.button}
+                >
+                    <Text style={styles.buttonText}>Login</Text>
+
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={handleSignUp}
+                    style={[styles.button,styles.buttonOutline]}
+                >
+                    <Text style={styles.buttonOutlineText}>Register</Text>
+
+                </TouchableOpacity>
+
+
+            </View>
+
+        </KeyboardAvoidingView>
+    )
 }
+
+export default LoginScreen
+
 const styles = StyleSheet.create({
-  container: {
+    container:{
     flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    padding: 35,
-    backgroundColor: '#fff'
-  },
-  inputStyle: {
-    width: '100%',
-    marginBottom: 15,
-    paddingBottom: 15,
-    alignSelf: "center",
-    borderColor: "#ccc",
-    borderBottomWidth: 1
-  },
-  loginText: {
-    color: '#3740FE',
-    marginTop: 25,
-    textAlign: 'center'
-  },
-  preloader: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    position: 'absolute',
-    alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fff'
-  }
-});
+    alignItems: 'center',
+    },
+    inputContainer: {
+        width:'80%'
+    },
+        input: {
+        backgroundColor: 'white',
+        paddingHorizontal: 15,
+        paddingVertical: 10,
+        borderRadius:10,
+        marginTop:5,
+    },
+    buttonContainer: {
+        width:'80%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 40,
+    },
+    button: {
+        backgroundColor: '#0782F9',
+        width: '100%',
+        padding:15,
+        borderRadius:10,
+        alignItems: 'center',
+    },
+    buttonText:{
+        color: 'white',
+        fontWeight: '700',
+        fontSize: 16,
+
+    },
+    buttonOutline: {
+        backgroundColor: 'white',
+        marginTop:5,
+        borderColor: '#0782F9',
+        borderWidth: 2,
+    },
+    buttonOutlineText: {
+        color: '#0782F9',
+        fontWeight: '700',
+        fontSize: 16,
+
+    },
+})
