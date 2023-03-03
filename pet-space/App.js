@@ -12,10 +12,10 @@ import { CatBreedsScreen } from './Components/CatBreedInfo.js';
 import { Manual } from './Components/Manual.js';
 import { PetProfile } from './Components/PetProfile.js';
 import { AccountInformation } from './Components/AccountInformation.js';
-import{CurrentApplications} from './Components/CurrentApplications.js';
-
+import { LoginScreen } from './Components/Login.js';
 
 const HomeStack = createStackNavigator();
+const LoginStack = createStackNavigator();
 // Stack Navigator for Home screen
 function HomeStackNavigator({navigation}) {
   return (
@@ -36,7 +36,6 @@ function ProfileStackNavigator() {
     <ProfileStack.Navigator screenOptions = {{ headerShown : false }} >
           <ProfileStack.Screen name = "ProfileScreen" component = {ProfileScreen} options = {{ title: 'Profile'}} />
           <ProfileStack.Screen name="AccountInformation" component={AccountInformation} options={{ title: 'Account Information' }} />
-          <ProfileStack.Screen name="CurrentApplications" component={CurrentApplications} options={{ title: 'Current Applications' }} />
         </ProfileStack.Navigator>
   );
 }
@@ -47,15 +46,23 @@ export default function App({ navigation }) {
       // NavigationContainer component to wrap the navigators and manage the navigation stack
       <NavigationContainer> 
         {/* Bottom Tab Navigator to navigate between different screens */}
-        
-        <Tab.Navigator 
+        <LoginStack.Navigator>
+          <LoginStack.Screen name="Login" component={LoginScreen} options={({navigation})}/>
+          <LoginStack.Screen name="PetSpace" component={MainTabs}/>
+        </LoginStack.Navigator>
+      </NavigationContainer>
+  );
+}
+
+function MainTabs() {
+  return (
+    <Tab.Navigator 
           // Customizing the appearance of the header for each screen in the Tab Navigator
           screenOptions={{
             headerTitleAlign: 'center', // Aligning the title in the center
             headerStyle: {backgroundColor: 'white', }, // Background color of the header
             headerTitleStyle: {fontSize: 30}, // Font size for the title
             headerTransparent: true, // Making the header transparent
-            
           }}>
           {/* Tab screen to display HomeStackNavigator */}
           <Tab.Screen 
@@ -101,11 +108,10 @@ export default function App({ navigation }) {
               headerLeftContainerStyle: {paddingRight: 10} // Adding padding to the left header
             }}
           />
-        </Tab.Navigator>
-      </NavigationContainer>
-  );
-}
 
+        </Tab.Navigator>
+      )
+}
 
 const HeaderStyle = StyleSheet.create({
 
@@ -114,5 +120,5 @@ const HeaderStyle = StyleSheet.create({
 const Tab = createBottomTabNavigator();
 
 const styles = StyleSheet.create({
-  
+
 });
