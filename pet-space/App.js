@@ -36,7 +36,7 @@ function ProfileStackNavigator() {
     <ProfileStack.Navigator screenOptions = {{ headerShown : false }} >
           <ProfileStack.Screen name = "ProfileScreen" component = {ProfileScreen} options = {{ title: 'Profile'}} />
           <ProfileStack.Screen name="AccountInformation" component={AccountInformation} options={{ title: 'Account Information' }} />
-        </ProfileStack.Navigator>
+    </ProfileStack.Navigator>
   );
 }
 
@@ -46,7 +46,7 @@ export default function App({ navigation }) {
       // NavigationContainer component to wrap the navigators and manage the navigation stack
       <NavigationContainer> 
         {/* Bottom Tab Navigator to navigate between different screens */}
-        <LoginStack.Navigator>
+        <LoginStack.Navigator screenOptions = {{ headerShown : false, gestureEnabled : false }} >
           <LoginStack.Screen name="Login" component={LoginScreen} options={({navigation})}/>
           <LoginStack.Screen name="PetSpace" component={MainTabs}/>
         </LoginStack.Navigator>
@@ -120,5 +120,5 @@ const HeaderStyle = StyleSheet.create({
 const Tab = createBottomTabNavigator();
 
 const styles = StyleSheet.create({
-
+  
 });
