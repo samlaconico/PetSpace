@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Linking } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Linking, Pressable } from 'react-native';
 import MapView, { Callout, Circle, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { render } from 'react-dom';
@@ -117,16 +117,13 @@ export function SearchScreen() {
           latitude: petShelter.geometry.location.lat,
           longitude: petShelter.geometry.location.lng
           }}
+          onCalloutPress={() => this.calloutPress()}
         >
-        <Callout>
+        <Callout onPress={() => Linking.openURL(petShelter.website)}>
           <View>
             <Text>{petShelter.name}</Text>
             <Text>{petShelter.vicinity}</Text>
-            {petShelter.website && (
-              <TouchableOpacity onPress={() => Linking.openURL(petShelter.website)}>
-                  <Text style={styles.websiteText}>{petShelter.website}</Text>
-              </TouchableOpacity>
-            )}
+            <Text style={styles.websiteText}>{petShelter.website}</Text>
           </View>
         </Callout>
       </Marker>
