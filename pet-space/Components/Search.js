@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Linking } from 'react-native';
 import MapView, { Callout, Circle, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { render } from 'react-dom';
-
+import Modal from 'react-native-modal';
 
 // SearchScreen component definition
 export function SearchScreen() {
@@ -11,6 +11,7 @@ export function SearchScreen() {
   const [mapRegion, setMapRegion] = useState(null);
   // State to store the pet shelters data
   const [petShelters, setPetShelters] = useState([]);
+
   
   // Use Effect hook to get the user's current location and set it as the map region
   useEffect(() => {
@@ -67,15 +68,28 @@ export function SearchScreen() {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      setPetShelters(data.results);
+      const fetchedShelters = data.results;
+  
+      const detailedShelters = await Promise.all(
+        fetchedShelters.map(async (shelter) => {
+          const detailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${shelter.place_id}&fields=name,formatted_phone_number,website,geometry&key=AIzaSyAbnDNnplvoEYpOLgPJhjoONIQPy5LknyM`;
+  
+          const detailsResponse = await fetch(detailsUrl);
+          const detailsData = await detailsResponse.json();
+  
+          return {
+            ...shelter,
+            formatted_phone_number: detailsData.result.formatted_phone_number,
+            website: detailsData.result.website,
+          };
+        })
+      );
+  
+      setPetShelters(detailedShelters);
     } catch (error) {
       console.error(error);
     }
   };
-  
-
-
-
 
 
   // Render the component
@@ -87,33 +101,37 @@ export function SearchScreen() {
 </TouchableOpacity>
       {/* Map component */}
       <MapView 
-               provider = {PROVIDER_GOOGLE}
-               style={styles.map} 
-               region={mapRegion}
-               // show user's current location on the map
-               showsUserLocation={true}
-               // show the My Location button on the map
-               showsMyLocationButton={true}
-              
+          provider = {PROVIDER_GOOGLE}
+          style={styles.map} 
+          region={mapRegion}
+          // show user's current location on the map
+          showsUserLocation={true}
+          // show the My Location button on the map
+          showsMyLocationButton={true}      
       >
 
     {petShelters.map((petShelter, index) => (
-    <Marker 
-      key={index}
-      coordinate={{
-        latitude: petShelter.geometry.location.lat,
-        longitude: petShelter.geometry.location.lng
-      }}
-    >
-      <Callout>
-        <View>
-          <Text>{petShelter.name}</Text>
-          <Text>{petShelter.vicinity}</Text>
-        </View>
-      </Callout>
-    </Marker>
+        <Marker 
+          key={index}
+          coordinate={{
+          latitude: petShelter.geometry.location.lat,
+          longitude: petShelter.geometry.location.lng
+          }}
+        >
+        <Callout>
+          <View>
+            <Text>{petShelter.name}</Text>
+            <Text>{petShelter.vicinity}</Text>
+            {petShelter.website && (
+              <TouchableOpacity onPress={() => Linking.openURL(petShelter.website)}>
+                  <Text style={styles.websiteText}>{petShelter.website}</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        </Callout>
+      </Marker>
   ))} 
-  
+
      </MapView>  
     </View>
   );
@@ -142,5 +160,13 @@ const styles = StyleSheet.create({
   searchButtonText: {
     color: 'black',
     fontWeight: 'bold',
+  },
+  calloutTouchableText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  websiteText: {
+    color: 'blue',
+    textDecorationLine: 'underline',
   },
 });
