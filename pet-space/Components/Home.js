@@ -1,6 +1,7 @@
 import React from "react";
 import { StatusBar } from 'expo-status-bar';
-import { ImageBackground, StyleSheet, Text, Image, View, FlatList, SafeAreaView, SectionList, Button, Pressable, Alert } from 'react-native';
+import { ImageBackground, StyleSheet, Text, Image, View, FlatList, SafeAreaView, SectionList, Button, Pressable, Alert, Linking } from 'react-native';
+
 
 //import { StyleSheet,Text,View } from "react-native";
 //import { HomeScreen } from "./Home";
@@ -88,7 +89,7 @@ const HeaderItem = ({ item }) => {
   //article component 
   const ArticleItem = ({article}) => {
     return <View style={styles.article}>
-      <Pressable onPress={() => Alert.alert('Left button pressed')}>
+      <Pressable onPress={() => Linking.openURL(article.link)}>
         <Image source={{uri: article.uri}} style={styles.articlePhoto} resizeMode="cover"/>
         <Text style={styles.articleText}>{article.title}</Text>
       </Pressable>
@@ -99,13 +100,15 @@ const HeaderItem = ({ item }) => {
   const ARTICLESLEFT = [
     {
       id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: "Dog Proofing Home in 30 Seconds",
+      title: "Pet Proofing Home",
       uri: 'https://previews.123rf.com/images/damedeeso/damedeeso1209/damedeeso120900010/15377316-dog-welcome-home-on-brown-mat.jpg',
+      link: 'https://www.americanhumane.org/fact-sheet/pet-proofing-your-home/',
     },
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: "Changing your Pups Food in 30 Seconds",
+      title: "Changing your Pet's Food",
       uri: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/feeding-dog-1638177317.jpg',
+      link: 'https://www.petco.com/content/petco/PetcoStore/en_US/pet-services/resource-center/food-nutrition/how-to-transition-your-dog-or-cat-to-a-new-food.html',
     }
   ]
   
@@ -113,13 +116,15 @@ const HeaderItem = ({ item }) => {
   const ARTICLESRIGHT= [
     {
       id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: "Changing Name in 30 Seconds",
+      title: "Changing Your Pet's Name",
       uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDkjbUUqexvrrJJxm2qEzXYFxPD41al86kAS-PZUZQ3LJMcn9VWzTYJ2MVpxCgPvMQtQ8&usqp=CAU',
+      link: 'https://humanesocietyofmacomb.org/renaming-your-pet/'
     },
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: "Raising a Good Dog in 60 Seconds",
+      title: "Raising a Good Dog",
       uri: 'https://www.bil-jac.com/media/2sxlmg0n/typeofeater-image.jpg?anchor=center&mode=crop&width=1024&height=512',
+      link: 'https://moderndogmagazine.com/articles/11-steps-raising-perfect-puppy/101491',
     }
   ]
   
