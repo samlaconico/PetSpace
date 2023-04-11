@@ -22,7 +22,7 @@ export function HomeScreen({navigation}) {
                   <FlatList
                     horizontal
                     data={section.data}
-                    renderItem={({ item }) => <HeaderItem item={item}/>}
+                    renderItem={({ item }) => <HeaderItem item={item} navigation={navigation}/>}
                     showsHorizontalScrollIndicator={false}
                   />
                 </>
@@ -71,9 +71,10 @@ export function HomeScreen({navigation}) {
     )
 }
 //header component (for scrolling list of dogs)
-const HeaderItem = ({ item }) => {
+const HeaderItem = ({ item, navigation }) => {
     return (
       <View style={styles.item}>
+        <Pressable onPress={() => navigation.navigate('PetProfile', {name: item.name, img: item.uri})}>
         <Image
           source={{
             uri: item.uri,
@@ -82,6 +83,7 @@ const HeaderItem = ({ item }) => {
           resizeMode="cover"
         />
         <Text style={styles.itemText}>{item.text}</Text>
+        </Pressable>
       </View>
     );
   };
@@ -136,6 +138,7 @@ const HeaderItem = ({ item }) => {
       data: [
         {
           key: '1',
+          name: 'Clifford',
           text: '1 mile away',
           uri: 'https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn',
         },
