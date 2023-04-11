@@ -1,16 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { ImageBackground, StyleSheet, Text, Image, View } from 'react-native';
+import { ImageBackground, StyleSheet, Text, Image, View, Pressable } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useRoute } from '@react-navigation/native';
+import email from 'react-native-email';
 
 export function PetProfile() {
-
     const route = useRoute();
+    const name = route.params.name;
 
     return (
         <ImageBackground source={require('../assets/background.jpg')} imageStyle={styles.bgImage} resizeMode="cover" style={styles.main}>
             <View style={styles.main}>
+                <Pressable onPress={() => handleEmail(route.params.name)}>
                 <Text style={styles.dogName}>{route.params.name}</Text>
                 <Image
                     source={{
@@ -19,20 +21,30 @@ export function PetProfile() {
                     style={styles.itemPhoto}
                     resizeMode="cover"
                   />
-                <Text style={styles.bodyText}>
-
-                    {route.params.text}
-                </Text>
+                    <Text style={styles.bodyText}>
+                        {route.params.text}
+                    </Text>
+                </Pressable>
             </View>
         </ImageBackground>
     );
     
   }
 
-  function findElement(array, title) {
+function findElement(array, title) {
     return array.find((element) => {
         return element.key === title;
     })
+}
+
+function handleEmail(name){
+    const to = ['LAShelter@email.com'] // string or array of email addresses
+    email(to, {
+        // Optional additional arguments
+        subject: 'Interested in fostering ' + name,
+        body: "Hello, my name is [NAME] and I'm interested in fostering " + name + ". If you could please take a look at my application and get back to me, it would be much appreciated",
+        checkCanOpen: false // Call Linking.canOpenURL prior to Linking.openURL
+    }).catch(console.error)
 }
 
 const styles = StyleSheet.create({
