@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useRoute } from '@react-navigation/native';
 import email from 'react-native-email';
+import { LoginScreen } from 'pet-space/Components/Login.js';
 
 export function PetProfile() {
     const route = useRoute();
