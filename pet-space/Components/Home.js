@@ -52,7 +52,7 @@ export function HomeScreen({navigation}) {
               data={ARTICLESLEFT}
               renderItem={({ item }) => <ArticleItem article={item}/>}
               keyExtractor={item => item.id}
-              scrollEnabled={false}
+              scrollEnabled={true}
             />
           </SafeAreaView>
 
@@ -61,7 +61,7 @@ export function HomeScreen({navigation}) {
               data={ARTICLESRIGHT}
               renderItem={({ item }) => <ArticleItem article={item}/>}
               keyExtractor={item => item.id}
-              scrollEnabled={false}
+              scrollEnabled={true}
             />
           </SafeAreaView>
           </View>
@@ -99,33 +99,69 @@ const HeaderItem = ({ item }) => {
   //articles on left row
   const ARTICLESLEFT = [
     {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: "Pet Proofing Home",
-      uri: 'https://previews.123rf.com/images/damedeeso/damedeeso1209/damedeeso120900010/15377316-dog-welcome-home-on-brown-mat.jpg',
-      link: 'https://www.americanhumane.org/fact-sheet/pet-proofing-your-home/',
+      title: "New Dog Owner? Here's Some Helpful Tips",
+      uri: 'https://www.thesprucepets.com/thmb/y4YEErOurgco9QQO-zJ6Ld1yVkQ=/3000x0/filters:no_upscale():strip_icc()/english-dog-breeds-4788340-hero-14a64cf053ca40f78e5bd078b052d97f.jpg',
+      link: 'https://www.petsbest.com/dog-owners-guide',
     },
     {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: "Changing your Pet's Food",
-      uri: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/feeding-dog-1638177317.jpg',
-      link: 'https://www.petco.com/content/petco/PetcoStore/en_US/pet-services/resource-center/food-nutrition/how-to-transition-your-dog-or-cat-to-a-new-food.html',
-    }
+      title: "Cost of Dog Parenthood",
+      uri: 'https://www.gannett-cdn.com/-mm-/8fb75d799eae407e7c9d69b7915db250037db2e2/c=292-507-3362-2242/local/-/media/2016/08/11/USATODAY/USATODAY/636065429132406714-ThinkstockPhotos-482420873.jpg',
+      link: 'https://www.rover.com/blog/cost-of-dog-parenthood/',
+    },
+    {
+      title: "Dog Training 101",
+      uri: 'https://lifeisdogpetcare.com/wp-content/uploads/2022/04/Tricks-picture.jpeg',
+      link: 'https://www.thesprucepets.com/steps-to-train-your-dog-1118273',
+    },
+    {
+      title: "Dog Grooming",
+      uri: 'https://i.guim.co.uk/img/media/67cafe0802bbca347130f7ad219b3bee96e72199/0_693_3570_2141/master/3570.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=ae0c4c999daf990c2d793d8a7bcc6270',
+      link: 'https://www.akc.org/expert-advice/health/how-to-groom-a-dog/',
+    },
+    {
+      title: "Needed Exercise for Dogs",
+      uri: 'https://media-be.chewy.com/wp-content/uploads/2017/07/13150908/dog_exercise_hero.jpg',
+      link: 'https://fairmountpetservice.com/Blog/pet-services-blog/dog-walking/dog-exercise-needs-breed-guide-chart/',
+    },
+    {
+      title: "Signs to Call Vet: Dog",
+      uri: 'https://www.forbes.com/advisor/wp-content/uploads/2023/02/dog-at-vet-visit.jpeg-900x510.jpg',
+      link: 'https://www.akc.org/expert-advice/health/should-i-call-my-dogs-vet/',
+    },
   ]
   
   //articles on right row
   const ARTICLESRIGHT= [
     {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: "Changing Your Pet's Name",
-      uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDkjbUUqexvrrJJxm2qEzXYFxPD41al86kAS-PZUZQ3LJMcn9VWzTYJ2MVpxCgPvMQtQ8&usqp=CAU',
-      link: 'https://humanesocietyofmacomb.org/renaming-your-pet/'
+      title: "New Cat Owner? Here's Some Helpful Tips",
+      uri: 'https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png',
+      link: 'https://www.petsbest.com/cat-owners-guide',
     },
     {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: "Raising a Good Dog",
-      uri: 'https://www.bil-jac.com/media/2sxlmg0n/typeofeater-image.jpg?anchor=center&mode=crop&width=1024&height=512',
-      link: 'https://moderndogmagazine.com/articles/11-steps-raising-perfect-puppy/101491',
-    }
+      title: "Cost of Cat Parenthood",
+      uri: 'https://res.cloudinary.com/sagacity/image/upload/c_crop,h_2000,w_3000,x_0,y_0/c_limit,dpr_auto,f_auto,fl_lossy,q_80,w_1200/0518-finance-cat-money_kya8zf.jpg',
+      link: 'https://www.rover.com/blog/cost-of-cat-parenthood/'
+    },
+    {
+      title: "Cat Training 101",
+      uri: 'https://www.fearfreehappyhomes.com/wp-content/uploads/2020/08/HighFive08370.jpg',
+      link: 'https://www.pumpkin.care/blog/how-to-train-a-cat/',
+    },
+    {
+      title: "Cat Grooming",
+      uri: 'https://luckydawgsalongrooming.com/wp-content/uploads/2018/04/cat-grooming-services.jpeg',
+      link: 'https://www.aspca.org/pet-care/cat-care/cat-grooming-tips#:~:text=Work%20along%20the%20lie%20of,on%20cats%20with%20short%20fur',
+    },
+    {
+      title: "Needed Exercise for Cats",
+      uri: 'https://d.newsweek.com/en/full/2022045/kitten-playing-wand-toy.jpg',
+      link: 'https://www.petmd.com/cat/wellness/evr_ct_exercising_with_your_cat_a_how_to_guide',
+    },
+    {
+      title: "Signs to Call Vet: Cat",
+      uri: 'https://d2zp5xs5cp8zlg.cloudfront.net/image-48672-800.jpg',
+      link: 'https://www.petcarerx.com/article/when-to-take-a-cat-to-the-vet/786',
+    },
   ]
   
   //header list
