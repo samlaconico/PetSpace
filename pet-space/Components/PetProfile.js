@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useRoute } from '@react-navigation/native';
 import email from 'react-native-email';
+import { LoginScreen } from 'pet-space/Components/Login.js';
 
 export function PetProfile() {
     const route = useRoute();
@@ -21,10 +22,10 @@ export function PetProfile() {
                     style={styles.itemPhoto}
                     resizeMode="cover"
                   />
-                    <Text style={styles.bodyText}>
-                        {route.params.text}
-                    </Text>
+                <Text style={styles.pressText}>Click here to email</Text>
                 </Pressable>
+                <Text style={styles.bodyText}> Breed: {route.params.breed} </Text>
+                <Text style={styles.bodyText}> {route.params.text} </Text>
             </View>
         </ImageBackground>
     );
@@ -63,8 +64,8 @@ const styles = StyleSheet.create({
     },
 
     itemPhoto: {
-        width: 300,
-        height: 300,
+        width: 200,
+        height: 200,
         borderRadius: 11,
         borderWidth: 10,
         borderColor : '#000000',
@@ -77,17 +78,27 @@ const styles = StyleSheet.create({
     dogName: {
         textAlign: "center",
         color: '#121212',
-        margin: 5,
         fontWeight: 'bold',
         fontSize: 72,
-        padding: 15,
+        paddingBottom: 2,
+    },
+
+    pressText: {
+        fontWeight: 'bold',
+        textAlign: "center",
+        padding: 8,
+        fontSize: 32,
     },
 
     bodyText: {
+        backgroundColor: "lightgray",
+        borderWidth: 3,
+        borderColor : '#000000',
         textAlign: "center",
         color: '#121212',
         margin: 5,
-        fontSize: 32,
-        padding: 15,
+        fontSize: 26,
+        paddingHorizontal: 10,
+        marginHorizontal: 20
     }
 });
