@@ -74,7 +74,7 @@ export function HomeScreen({navigation}) {
 const HeaderItem = ({ item, navigation }) => {
     return (
       <View style={styles.item}>
-        <Pressable onPress={() => navigation.navigate('PetProfile', {name: item.name, img: item.uri, text: item.description})}>
+        <Pressable onPress={() => navigation.navigate('PetProfile', {name: item.name, img: item.uri, text: item.description, breed: item.breed})}>
         <Image
           source={{
             uri: item.uri,
@@ -141,14 +141,16 @@ const HeaderItem = ({ item, navigation }) => {
           name: 'Clifford',
           text: '1 mile away',
           uri: 'https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn',
-          description: 'very nice boy click here to email'
+          description: 'Very nice boy, very playful, and does not mess up the house!',
+          breed: 'Golden Retriever'
         },
         {
           key: '2',
           name: 'Ace',
           text: '4 miles away',
           uri: 'https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg',
-          description: 'very nice boy click here to email'
+          description: 'very nice boy click here to email',
+          breed: 'Labador Retriever'
         },
   
         {
@@ -156,21 +158,24 @@ const HeaderItem = ({ item, navigation }) => {
           name: 'Chad',
           text: '6 miles away',
           uri: 'https://post.healthline.com/wp-content/uploads/2020/08/3180-Pug_green_grass-732x549-thumbnail-732x549.jpg',
-          description: 'very nice boy click here to email'
+          description: 'very nice boy click here to email',
+          breed: 'Pug'
         },
         {
           key: '4',
           name: 'King',
           text: '1 mile away',
           uri: 'https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/advisor/wp-content/uploads/2021/03/pit-bull-featured.jpg',
-          description: 'very nice boy click here to email'
+          description: 'very nice boy click here to email',
+          breed: "Pitbull"
         },
         {
           key: '5',
           name: 'Bear',
           text: '3 miles away',
           uri: 'https://media-cldnry.s-nbcnews.com/image/upload/rockcms/2022-08/220805-border-collie-play-mn-1100-82d2f1.jpg',
-          description: 'very nice boy click here to email'
+          description: 'very nice boy click here to email',
+          breed: "Border Collie"
         },
       ],
     },
