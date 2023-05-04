@@ -26,7 +26,7 @@ const ProfileScreen = ({ navigation }) => {
           
           {/* TouchableOpacity component to display an alert when pressed */}
           <TouchableOpacity style={styles.menuItem} 
-           onPress={() => alert('Settings pressed')}>
+           onPress={() => navigation.navigate('SettingsScreen')}>
             <Text style={styles.menuText}>Settings</Text>
           </TouchableOpacity>
           
