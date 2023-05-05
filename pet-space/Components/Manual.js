@@ -12,7 +12,7 @@ export function Manual() {
     return (
         <ImageBackground source={require('../assets/background.jpg')} imageStyle={styles.bgImage} resizeMode="cover" style={styles.main}>
             <View style={styles.main}>
-            <Text style={{fontSize: 20, fontWeightight: "bold", marginTop :100, paddingBottom: 12, alignSelf: "center"}}>{currentBreedName} Information </Text>
+            <Text style={{fontSize: 20, fontWeightight: "bold", marginTop :100, paddingTop: 5, paddingBottom: 4, alignSelf: "center", fontWeight: "bold",}}> {currentBreedName} Information </Text>
                 
                 <SafeAreaView style ={{ flex: 3, marginTop: 5}}>
                 <View style={styles.item}>
@@ -88,7 +88,7 @@ export function Manual() {
         width: 300,
         height: 300,
         borderRadius: 11,
-        borderWidth: 10,
+        borderWidth: 5,
         borderColor : '#000000',
         justifyContent: 'center',
         alignContent: 'center',
@@ -101,6 +101,7 @@ export function Manual() {
         color: '#121212',
         marginTop: 5,
         fontWeight: 'bold',
+        fontSize: 20,
       },
     
 

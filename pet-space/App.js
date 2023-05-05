@@ -63,6 +63,7 @@ function MainTabs() {
             headerStyle: {backgroundColor: 'white', }, // Background color of the header
             headerTitleStyle: {fontSize: 30}, // Font size for the title
             headerTransparent: true, // Making the header transparent
+            tabBarIconStyle: { display: "none" },
           }}>
           {/* Tab screen to display HomeStackNavigator */}
           <Tab.Screen 
