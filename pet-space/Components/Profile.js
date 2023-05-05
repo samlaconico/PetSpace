@@ -2,9 +2,19 @@ import { StatusBar } from 'expo-status-bar';
 import { ImageBackground, StyleSheet, Text, Image, View, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { authentication} from "../firebase";
 
 // ProfileScreen component to display the profile screen of the app
 const ProfileScreen = ({ navigation }) => {
+  const currentUser = authentication.currentUser;
+    const handleSignOut = ()=> {
+      authentication
+        .signOut()
+        .then(() => {
+          navigation.replace("Login")
+        })
+        .catch(error=> alert(error.message))
+    }
     return (
       // ImageBackground component to display background image
       <ImageBackground source={require('../assets/background.jpg')} 
@@ -12,7 +22,7 @@ const ProfileScreen = ({ navigation }) => {
         <View style={styles.container}>
           <Image source={require('../assets/transparent.png')} style={styles.emptyImageBox} />
           {/* TouchableOpacity component to navigate to AccountInformation screen when pressed */}
-          <Text style = {styles.text}>FirstName LastName</Text>
+          <Text style={styles.text}>{currentUser.email}</Text>
           <TouchableOpacity style={styles.menuItem} 
            onPress={() => navigation.navigate('AccountInformation')}>
             <Text style={styles.menuText}>Account Information</Text>
@@ -26,13 +36,13 @@ const ProfileScreen = ({ navigation }) => {
           
           {/* TouchableOpacity component to display an alert when pressed */}
           <TouchableOpacity style={styles.menuItem} 
-           onPress={() => navigation.navigate('SettingsScreen')}>
+           onPress={() => alert('Settings pressed')}>
             <Text style={styles.menuText}>Settings</Text>
           </TouchableOpacity>
           
           {/* TouchableOpacity component to display an alert when pressed */}
           <TouchableOpacity style={styles.menuItem} 
-           onPress={() => alert('Sign Out pressed')}>
+           onPress={handleSignOut}>
             <Text style={styles.menuText}>Sign Out</Text>
           </TouchableOpacity>
         </View>

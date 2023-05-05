@@ -37,11 +37,11 @@ export function HomeScreen({navigation}) {
           <View style={{flex : 2.5}}>
             <Text style={{fontSize: 30, fontWeightight: "bold", paddingBottom: 12, alignSelf: "center"}}>Breed Info</Text>
               <View style={{flexDirection: "row", justifyContent: 'space-between'}}>
-              <Pressable onPress={() => navigation.navigate('DogBreedsScreen')}style={{width: 100, height: 46, backgroundColor: "#FFFFFF", alignItems: "center", borderRadius: 6, marginHorizontal: 20, borderWidth: 3}}>
-                <Text style={{fontSize:30,}}>Dogs</Text>
+              <Pressable onPress={() => navigation.navigate('DogBreedsScreen')}style={{width: 100, height: 46, backgroundColor: "#FFFFFF", alignItems: "center", borderRadius: 11, marginHorizontal: 20}}>
+                <Text style={{fontSize:30, marginTop: 4}}>Dogs</Text>
               </Pressable>
-              <Pressable onPress={() => navigation.navigate('CatBreedsScreen')} style={{width: 100, height: 46, backgroundColor: "#FFFFFF", alignItems: "center", borderRadius: 6, marginHorizontal: 20, borderWidth: 3}}>
-                <Text style={{fontSize:30}}>Cats</Text>
+              <Pressable onPress={() => navigation.navigate('CatBreedsScreen')} style={{width: 100, height: 46, backgroundColor: "#FFFFFF", alignItems: "center", borderRadius: 11, marginHorizontal: 20}}>
+                <Text style={{fontSize:30, marginTop: 4}}>Cats</Text>
               </Pressable>
               </View>
           </View>
@@ -177,7 +177,7 @@ const HeaderItem = ({ item, navigation }) => {
           name: 'Clifford',
           text: '1 mile away',
           uri: 'https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn',
-          description: 'Very nice boy, very playful, and does not mess up the house!',
+          description: 'Very nice boy, very playful, and does not mess up the house! Beautiful colors, great bloodline.',
           breed: 'Golden Retriever'
         },
         {

@@ -5,10 +5,11 @@ export function CatBreedsScreen({navigation}) {
     return (
         <ImageBackground source={require('../assets/background.jpg')} imageStyle={styles.bgImage} resizeMode="cover" style={styles.main}>
             <View style={styles.main}>
-            <Text style={{fontSize: 20, fontWeightight: "bold", marginTop :100, paddingBottom: 12, alignSelf: "center"}}>Breed Information</Text>
+            <Text style={{fontSize: 40, fontWeightight: "bold", marginTop :100, paddingBottom: 0, alignSelf: "center", fontWeight: "bold",}}>Breed Information</Text>
                 <SafeAreaView style ={{ flex: 3, marginTop: 5}}>
                     <SectionList
                     sections={BreedList}
+                    showsVerticalScrollIndicator={false}
                     keyExtractor = {(item, index) => item + index}
                     renderItem = { ( {item}) => <ListCats item = {item} navigation = {navigation}/>}
                     renderSectionHeader = {({section : {text}}) => (
@@ -85,13 +86,13 @@ const styles = StyleSheet.create({
         width: 300,
         height: 300,
         borderRadius: 11,
-        borderWidth: 10,
         borderColor : '#000000',
       },
 
       itemText: {
         textAlign: "center",
         color: '#121212',
+        fontSize: 20,
         marginTop: 5,
         fontWeight: 'bold',
       },
