@@ -53,6 +53,7 @@ export function HomeScreen({navigation}) {
               renderItem={({ item }) => <ArticleItem article={item}/>}
               keyExtractor={item => item.id}
               scrollEnabled={true}
+              showsVerticalScrollIndicator={false}
             />
           </SafeAreaView>
 
@@ -62,6 +63,7 @@ export function HomeScreen({navigation}) {
               renderItem={({ item }) => <ArticleItem article={item}/>}
               keyExtractor={item => item.id}
               scrollEnabled={true}
+              showsVerticalScrollIndicator={false}
             />
           </SafeAreaView>
           </View>

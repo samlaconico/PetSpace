@@ -1,5 +1,5 @@
 import { useRoute } from '@react-navigation/native';
-import { ImageBackground, SectionList, StyleSheet, Text, Image, View,  FlatList, Pressable, Alert } from 'react-native';
+import { ImageBackground, SectionList, StyleSheet, Text, Image, View,  FlatList, Pressable, Alert, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native';
 
 export function Manual() {
@@ -12,7 +12,7 @@ export function Manual() {
     return (
         <ImageBackground source={require('../assets/background.jpg')} imageStyle={styles.bgImage} resizeMode="cover" style={styles.main}>
             <View style={styles.main}>
-            <Text style={{fontSize: 20, fontWeightight: "bold", marginTop :100, paddingTop: 5, paddingBottom: 4, alignSelf: "center", fontWeight: "bold",}}> {currentBreedName} Information </Text>
+            <Text style={{fontSize: 20, fontWeightight: "bold", marginTop :100, paddingTop: 5, paddingBottom: 0, alignSelf: "center", fontWeight: "bold",}}> {currentBreedName} Information </Text>
                 
                 <SafeAreaView style ={{ flex: 3, marginTop: 5}}>
                 <View style={styles.item}>
@@ -23,7 +23,9 @@ export function Manual() {
                     style={styles.itemPhoto}
                     resizeMode="cover"
                   />
+                  <ScrollView showsVerticalScrollIndicator={false}>
                   <Text style={styles.itemText}>{currentBreedInfo}</Text>
+                  </ScrollView>
                 </View>
                 </SafeAreaView>
 
@@ -88,7 +90,6 @@ export function Manual() {
         width: 300,
         height: 300,
         borderRadius: 11,
-        borderWidth: 5,
         borderColor : '#000000',
         justifyContent: 'center',
         alignContent: 'center',
