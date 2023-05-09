@@ -80,7 +80,7 @@ const ProfileScreen = ({ navigation }) => {
     },
     // Style for TouchableOpacity component
     menuItem: {
-      backgroundColor: 'white',
+      backgroundColor: 'orange',
       borderWidth: 1,
       borderColor: 'black',
       fontSize: 18,
@@ -100,6 +100,7 @@ const ProfileScreen = ({ navigation }) => {
       backgroundColor:'#BEBEBE',
       borderRadius: 5,
       marginBottom: 20,
+      padding: 10,
     }
   });
   

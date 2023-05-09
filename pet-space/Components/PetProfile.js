@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { ImageBackground, StyleSheet, Text, Image, View, Pressable, ScrollView } from 'react-native';
+import { ImageBackground, StyleSheet, Text, Image, View, Pressable, ScrollView , SafeAreaView} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useRoute } from '@react-navigation/native';
@@ -13,28 +13,30 @@ export function PetProfile() {
 
     return (
         <ImageBackground source={require('../assets/background.jpg')} imageStyle={styles.bgImage} resizeMode="cover" style={styles.main}>
-            <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={styles.main}>
-                <Pressable onPress={() => handleEmail(route.params.name)}>
-                <Text style={styles.dogName}>{route.params.name}</Text>
-                    <Image
-                        source={{uri: route.params.img,}}
-                        style={styles.itemPhoto}
-                        resizeMode="cover"
-                    />
-                    <Image
-                        source={{uri: route.params.more,}}
-                        style={styles.itemPhoto}
-                        resizeMode="cover"
-                    />
-                <Text style={styles.pressText}>Click here to email</Text>
-                </Pressable>
-                <View style={{marginTop: 15,}}>
-                <Text style={styles.bodyText}> Breed: {route.params.breed} </Text>
-                <Text style={styles.bodyText}> {route.params.text} </Text>
+            <SafeAreaView style ={{ flex: 3, marginTop: 5}}>
+                <View style={styles.main}>
+                    <ScrollView showsVerticalScrollIndicator={false}>
+                        <Pressable onPress={() => handleEmail(route.params.name)}>
+                        <Text style={styles.dogName}>{route.params.name}</Text>
+                            <Image
+                                source={{uri: route.params.img,}}
+                                style={styles.itemPhoto}
+                                resizeMode="cover"
+                            />
+                            <Image
+                                source={{uri: route.params.more,}}
+                                style={styles.itemPhoto}
+                                resizeMode="cover"
+                            />
+                        <Text style={styles.pressText}>Click here to email</Text>
+                        </Pressable>
+                        <View style={{marginTop: 15,}}>
+                            <Text style={styles.bodyText}> Breed: {route.params.breed} </Text>
+                            <Text style={styles.bodyText}> {route.params.text} </Text>
+                        </View>
+                    </ScrollView>
                 </View>
-            </View>
-            </ScrollView>
+            </SafeAreaView>
         </ImageBackground>
     );
     
