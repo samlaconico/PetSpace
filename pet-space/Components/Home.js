@@ -53,6 +53,7 @@ export function HomeScreen({navigation}) {
               renderItem={({ item }) => <ArticleItem article={item}/>}
               keyExtractor={item => item.id}
               scrollEnabled={true}
+              showsVerticalScrollIndicator={false}
             />
           </SafeAreaView>
 
@@ -62,6 +63,7 @@ export function HomeScreen({navigation}) {
               renderItem={({ item }) => <ArticleItem article={item}/>}
               keyExtractor={item => item.id}
               scrollEnabled={true}
+              showsVerticalScrollIndicator={false}
             />
           </SafeAreaView>
           </View>
@@ -74,7 +76,7 @@ export function HomeScreen({navigation}) {
 const HeaderItem = ({ item, navigation }) => {
     return (
       <View style={styles.item}>
-        <Pressable onPress={() => navigation.navigate('PetProfile', {name: item.name, img: item.uri, text: item.description, breed: item.breed})}>
+        <Pressable onPress={() => navigation.navigate('PetProfile', {name: item.name, img: item.uri, text: item.description, breed: item.breed, more: item.more})}>
         <Image
           source={{
             uri: item.uri,
@@ -177,6 +179,7 @@ const HeaderItem = ({ item, navigation }) => {
           name: 'Clifford',
           text: '1 mile away',
           uri: 'https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn',
+          more: 'https://minifairytailgoldenretrievers.com/uploads/photos/54C2B437-664B-4729-AF5D-15A68273B79F.jpeg',
           description: 'Very nice boy, very playful, and does not mess up the house! Beautiful colors, great bloodline.',
           breed: 'Golden Retriever'
         },
@@ -185,8 +188,9 @@ const HeaderItem = ({ item, navigation }) => {
           name: 'Ace',
           text: '4 miles away',
           uri: 'https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg',
-          description: 'very nice boy click here to email',
-          breed: 'Labador Retriever'
+          more: 'https://i.pinimg.com/originals/b1/8d/9d/b18d9d15f64a5eb22c705988a0d7341a.jpg',
+          description: 'Ace is friendly, outgoing, and makes a great family dog. He is intelligent and eager to please, which makes them easy to train.',
+          breed: 'Labrador Retriever'
         },
   
         {
@@ -194,7 +198,8 @@ const HeaderItem = ({ item, navigation }) => {
           name: 'Chad',
           text: '6 miles away',
           uri: 'https://post.healthline.com/wp-content/uploads/2020/08/3180-Pug_green_grass-732x549-thumbnail-732x549.jpg',
-          description: 'very nice boy click here to email',
+          more: 'https://cdn.britannica.com/34/233234-050-1649BFA9/Pug-dog.jpg',
+          description: 'Are you ready to open your home and heart to a sweet and cuddly pug? Meet Chad, our lovable pug in need of a foster home!',
           breed: 'Pug'
         },
         {
@@ -202,7 +207,8 @@ const HeaderItem = ({ item, navigation }) => {
           name: 'King',
           text: '1 mile away',
           uri: 'https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/advisor/wp-content/uploads/2021/03/pit-bull-featured.jpg',
-          description: 'very nice boy click here to email',
+          more: 'https://www.perfectdogbreeds.com/wp-content/uploads/2020/10/A-black-pit-bull-terrier-on-the-meadow.jpg',
+          description: 'King is a handsome and playful pitbull who loves nothing more than spending time with his humans. He is a true lap dog who adores snuggling up for cuddles and belly rubs!',
           breed: "Pitbull"
         },
         {
@@ -210,7 +216,8 @@ const HeaderItem = ({ item, navigation }) => {
           name: 'Bear',
           text: '3 miles away',
           uri: 'https://media-cldnry.s-nbcnews.com/image/upload/rockcms/2022-08/220805-border-collie-play-mn-1100-82d2f1.jpg',
-          description: 'very nice boy click here to email',
+          more: 'https://images.unsplash.com/photo-1568393691080-d016376b767d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80',
+          description: 'Looking for a furry friend who is intelligent, energetic, and loves to play? Meet Bear, our handsome and friendly Border Collie in need of a foster home.',
           breed: "Border Collie"
         },
       ],

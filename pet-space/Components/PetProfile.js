@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { ImageBackground, StyleSheet, Text, Image, View, Pressable } from 'react-native';
+import { ImageBackground, StyleSheet, Text, Image, View, Pressable, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useRoute } from '@react-navigation/native';
@@ -13,16 +13,20 @@ export function PetProfile() {
 
     return (
         <ImageBackground source={require('../assets/background.jpg')} imageStyle={styles.bgImage} resizeMode="cover" style={styles.main}>
+            <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.main}>
                 <Pressable onPress={() => handleEmail(route.params.name)}>
                 <Text style={styles.dogName}>{route.params.name}</Text>
-                <Image
-                    source={{
-                      uri: route.params.img,
-                    }}
-                    style={styles.itemPhoto}
-                    resizeMode="cover"
-                  />
+                    <Image
+                        source={{uri: route.params.img,}}
+                        style={styles.itemPhoto}
+                        resizeMode="cover"
+                    />
+                    <Image
+                        source={{uri: route.params.more,}}
+                        style={styles.itemPhoto}
+                        resizeMode="cover"
+                    />
                 <Text style={styles.pressText}>Click here to email</Text>
                 </Pressable>
                 <View style={{marginTop: 15,}}>
@@ -30,6 +34,7 @@ export function PetProfile() {
                 <Text style={styles.bodyText}> {route.params.text} </Text>
                 </View>
             </View>
+            </ScrollView>
         </ImageBackground>
     );
     
@@ -76,6 +81,7 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         alignSelf: 'center',
         alignItems: 'center',
+        marginBottom: 10
     },
 
     dogName: {
@@ -89,7 +95,7 @@ const styles = StyleSheet.create({
     pressText: {
         fontWeight: 'bold',
         textAlign: "center",
-        padding: 8,
+        paddingTop: 8,
         fontSize: 32,
     },
 
@@ -101,5 +107,6 @@ const styles = StyleSheet.create({
         fontSize: 20,
         paddingHorizontal: 10,
         marginHorizontal: 5,
+        paddingBottom:10
     }
 });
