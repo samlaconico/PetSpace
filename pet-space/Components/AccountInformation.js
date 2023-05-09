@@ -67,25 +67,6 @@ const AccountInformation = ({ navigation }) => {
             <Text style={styles.buttonText}>EDIT</Text>
         </TouchableOpacity>
 
-        <Text style={styles.applicationHeaderText}>Application:</Text>
-
-        <TouchableOpacity style={styles.appButtons} 
-           onPress={() => navigation.navigate('CurrentApplications')}>
-            <Text style={styles.buttonText}>Current Applications</Text>
-        </TouchableOpacity>
-        
-        <TouchableOpacity style={styles.appButtons} 
-           onPress={() => alert('Past Applications pressed')}>
-            <Text style={styles.buttonText}>Past Applications</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.appButtons} 
-           onPress={() => alert('New Applications pressed')}>
-            <Text style={styles.buttonText}>New Application</Text>
-        </TouchableOpacity>
-
-
-
       </View>
     </ImageBackground>
   );
